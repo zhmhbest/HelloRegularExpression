@@ -105,14 +105,7 @@ String.prototype.testMatch = function (reg) {
 | `[^abc]`     | 匹配一个不是（字符`a`或`b`或`c`）的字符 |
 | `[^a-c]`     | 匹配一个不是（字符`a`或`b`或`c`）的字符 |
 | `[^a-c0-2]`  | 匹配一个不是（字符`a`或`b`或`c`或`0`或`1`或`2`）的字符 |
-| `#{3}\|@{3}`  | 匹配`###`或`@@@` |
-
-<code>#{3}&brvbar;@{3}</code>
-
-<!--
-此处为了兼容Github显示效果
-#{3}|@{3}
--->
+| <code>#{3}&vert;@{3}</code> | 匹配`###`或`@@@` |
 
 ```js
 // 【Javascript】
@@ -145,7 +138,7 @@ String.prototype.testMatch = function (reg) {
 | `(?:expression)`          | 捕获成组，后面无法再引用 |
 | `(?<gname>expression)`    | 捕获成组，定义组名`gname` |
 | `(?<-gname>)`             | 移除组`gname`，后面无法再引用 |
-| `(?(gname)y_exp\|n_exp)`   | 存在组`gname`则匹配`y_exp`，否则匹配`n_exp` |
+| <code>(?(gname)y_exp&vert;n_exp)</code> | 存在组`gname`则匹配`y_exp`，否则匹配`n_exp` |
 | `\number`                 | 后向引用，重复匹配**已确定**的组内容 |
 | `\k<gname>`               | 后向引用，重复匹配**已确定**的组内容 |
 
