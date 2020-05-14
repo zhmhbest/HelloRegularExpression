@@ -107,6 +107,13 @@ String.prototype.testMatch = function (reg) {
 | `[^a-c0-2]`  | 匹配一个不是（字符`a`或`b`或`c`或`0`或`1`或`2`）的字符 |
 | `#{3}\|@{3}`  | 匹配`###`或`@@@` |
 
+<code>#{3}&brvbar;@{3}</code>
+
+<!--
+此处为了兼容Github显示效果
+#{3}|@{3}
+-->
+
 ```js
 // 【Javascript】
 
