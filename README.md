@@ -3,10 +3,13 @@
 >[参考资料](https://deerchao.cn/tutorials/regex/regex.htm)
 
 ```js
-// Javascript
+// 【Javascript】
+
 String.prototype.testMatch = function (reg) {
-    //# /reg/  : 匹配一次
-    //# /reg/g : 重复匹配
+    //# /reg/  : 匹配一次后停止
+    //# /reg/g : 全局匹配（重复匹配到结尾）
+    //# /reg/i : 大小写不敏感
+    //# /reg/m : 多行匹配
     console.log(this.replace(reg, s => {
         let buf = [];
         for(let i=0; i<s.length; i++) buf.push('■');
@@ -37,7 +40,8 @@ String.prototype.testMatch = function (reg) {
 | `[^0-9,a-z,A-Z,_]` | 匹配一个**不是字母**且**不是数字**且**不是下划线**的字符 |
 
 ```js
-// Javascript
+// 【Javascript】
+
   'I love learning'.testMatch(/./g);
 // ■■■■■■■■■■■■■■■
 
@@ -76,7 +80,8 @@ String.prototype.testMatch = function (reg) {
 | `{n,m}?` | 重复`n`到`m`次（尽可能少） |
 
 ```js
-// Javascript
+// 【Javascript】
+
   '___###___###___'.testMatch(/#{3}/g);
 // ___■■■___■■■___
 
@@ -103,7 +108,8 @@ String.prototype.testMatch = function (reg) {
 | `#{3}|@{3}`  | 匹配`###`或`@@@` |
 
 ```js
-// Javascript
+// 【Javascript】
+
   '___012___ABC___abc___'.testMatch(/[abc]/g);
 // ___012___ABC___■■■___
 
@@ -127,16 +133,18 @@ String.prototype.testMatch = function (reg) {
 
 | 表达式 | 含义 |
 | -: | :- |
-| `(?#comment)`           | 注释 |
-| `(expression)`          | 成组匹配 |
-| `(?<gname>expression)`  | 入栈，定义组名为`gname` |
-| `(?<-gname>)`           | 出栈，移除组`gname` |
-| `(?(gname)y_exp|n_exp)` | 存在组`gname`则匹配`y_exp`，否则匹配`n_exp` |
-| `\number`               | 后向引用，重复匹配**已确定**的组内容 |
-| `\k<gname>`             | 后向引用，重复匹配**已确定**的组内容 |
+| `(?#comment)`             | 注释 |
+| `(expression)`            | 捕获成组，分配序号 |
+| `(?:expression)`          | 捕获成组，后面无法再引用 |
+| `(?<gname>expression)`    | 捕获成组，定义组名`gname` |
+| `(?<-gname>)`             | 移除组`gname`，后面无法再引用 |
+| `(?(gname)y_exp|n_exp)`   | 存在组`gname`则匹配`y_exp`，否则匹配`n_exp` |
+| `\number`                 | 后向引用，重复匹配**已确定**的组内容 |
+| `\k<gname>`               | 后向引用，重复匹配**已确定**的组内容 |
 
 ```js
-// Javascript
+// 【Javascript】
+
   '192.168.1.100'.testMatch(/\d{1,3}\./);
 // ■■■■168.1.100
 
@@ -164,7 +172,8 @@ String.prototype.testMatch = function (reg) {
 | `expression(?!exp)`  | 零宽度负预测先行断言，结尾不包含`exp` |
 
 ```js
-// Javascript
+// 【Javascript】
+
 // a开头
   'I am singing while you are dancing'.testMatch(/(?<=\ba)\w+\b/g);
 // I a■ singing while you a■■ dancing
